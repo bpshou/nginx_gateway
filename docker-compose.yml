@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  nginx-gateway:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        ENV_NAME: prod
+    container_name: nginx-gateway
+    image: nginx-gateway
+    ports:
+      - 80:80
+    extra_hosts:
+      - 'www.example.com:127.0.0.1'
+    environment:
+      ENV_NAME: dev
