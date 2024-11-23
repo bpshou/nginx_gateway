@@ -11,6 +11,7 @@ if [ ! -d "/etc/nginx/conf.d/custom" ]; then
 
     cp -rf /root/$ENV_NAME/nginx/ /etc/
     cp -r /root/custom/ /etc/nginx/conf.d/
+    cp -r /root/example.ssl/ /etc/nginx/conf.d/
 
     openssl dhparam -out /etc/nginx/dhparam.pem 2048
 

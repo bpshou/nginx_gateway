@@ -11,7 +11,9 @@ services:
     image: nginx-gateway
     ports:
       - 80:80
+      - 443:443
     extra_hosts:
       - 'www.example.com:127.0.0.1'
+      - 'ssl.example.com:127.0.0.1'
     environment:
       ENV_NAME: dev
