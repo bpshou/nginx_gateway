@@ -1,6 +1,7 @@
 FROM nginx:latest
 
-ENV ENV_NAME=prod
+ARG ENV_NAME=dev
+ENV ENV_NAME=$ENV_NAME
 
 COPY ./entrypoint.sh /
 COPY ./src /root
@@ -12,4 +13,6 @@ WORKDIR /etc/nginx/conf.d/
 HEALTHCHECK --interval=10s --timeout=3s --retries=5 \
     CMD curl -fs http://localhost/healthcheck || exit 1
 
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["nginx", "-g", "daemon off;"]

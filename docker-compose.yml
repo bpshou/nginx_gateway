@@ -6,7 +6,7 @@ services:
       context: ./
       dockerfile: Dockerfile
       args:
-        ENV_NAME: prod
+        ENV_NAME: dev
     container_name: nginx-gateway
     image: nginx-gateway
     ports:

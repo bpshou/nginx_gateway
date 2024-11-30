@@ -2,21 +2,19 @@
 Nginx网关
 
 
-### 网关语法测试
-> 为方便检查配置的语法是否正确，我们可以使用docker本地启动一个环境进行语法检查
+## 服务启动
+> docker运行
 
 ### docker compose
-通过docker-compose校验服务是否正常启动，正常启动则相关语法正确，否则则异常
+服务启动
 
 1. docker-compose校验
 ```
-docker compose build
-docker compose up -d
-docker compose down
+docker compose down && docker compose up -d --build
 ```
 
 ### docker run
-通过命令行校验服务是否正常启动，正常启动则相关语法正确，否则则异常
+服务启动
 
 1. 构建Nginx镜像
 ```
@@ -31,7 +29,3 @@ docker run -d \
     --add-host www.example.com:127.0.0.1 \
     nginx-gateway
 ```
-
-- 如果提示一些不存在的文件夹或文件，先手动创建上，因为服务器上可能是存在的。
-- 我们主要是检查配置的语法的正确性
-
