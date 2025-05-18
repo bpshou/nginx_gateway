@@ -1,13 +1,9 @@
 FROM openresty/openresty:latest
 
-ARG ENV_NAME=dev
-ENV ENV_NAME=$ENV_NAME
+COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx/conf.d/ /etc/nginx/conf.d/
 
-COPY ./entrypoint.sh /
-COPY ./src /root
-
-RUN chmod +x /entrypoint.sh && \
-    groupadd --system --gid 101 nginx && \
+RUN groupadd --system --gid 101 nginx && \
     useradd --system --gid nginx --no-create-home --home /nonexistent --comment "nginx user" --shell /bin/false --uid 101 nginx && \
     mkdir -p /var/log/nginx/ && \
     touch /var/log/nginx/access.log /var/log/nginx/error.log && \
@@ -17,8 +13,6 @@ RUN chmod +x /entrypoint.sh && \
 WORKDIR /etc/nginx/conf.d/
 
 HEALTHCHECK --interval=10s --timeout=3s --retries=5 \
-    CMD curl -fs http://localhost/healthcheck || exit 1
-
-ENTRYPOINT ["/entrypoint.sh"]
+    CMD curl -fs http://127.0.0.1/healthcheck || exit 1
 
 CMD ["nginx", "-c", "/etc/nginx/nginx.conf", "-g", "daemon off;"]
