@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:rw
+      - ./nginx/conf.d:/etc/nginx/conf.d:rw
+    extra_hosts:
+      - 'www.example.com:127.0.0.1'
+      - 'ssl.example.com:127.0.0.1'

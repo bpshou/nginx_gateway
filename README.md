@@ -24,8 +24,14 @@ docker build -t nginx-gateway .
 2. 启动Nginx服务
 ```
 docker run -d \
-    -p 8686:80 \
+    -p 80:80 \
+    -p 443:443 \
     --name nginx-gateway \
     --add-host www.example.com:127.0.0.1 \
     nginx-gateway
 ```
+
+## 系列
+- general 通用系列，主打高效、快捷
+- openresty 系列，使用Openresty作为Nginx网关
+- safe 安全系列，注重网关安全

@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: nginx
+    image: nginx-gateway
+    ports:
+      - 80:80
+      - 443:443
+    extra_hosts:
+      - 'www.example.com:127.0.0.1'
+      - 'ssl.example.com:127.0.0.1'
